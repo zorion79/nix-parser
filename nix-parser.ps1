@@ -12,9 +12,6 @@ foreach ($url in $urls) {
     $name = ((($webResponse.ParsedHtml.getElementsByTagName("div") | `
                     Where-Object { $_.id -eq "goods_center" }).getElementsByTagName("span") | `
                 Where-Object { $_.id -eq "goods_name" }).getElementsByTagName("span"))[0].textContent
-    
-    # $trimPrice = $price.Replace(" руб.", "")
-    # $trimPrice
 
     $o = [PSCustomObject]@{
         url   = $url.P1
