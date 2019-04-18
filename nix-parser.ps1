@@ -8,7 +8,9 @@ $result = @()
 foreach ($url in $urls) {
     $webResponse = Invoke-WebRequest $url.url
 
-    $price = (($webResponse.ParsedHtml.getElementsByTagName("table") | Where-Object { $_.id -eq "goods_buttons" }).getElementsByTagName("span"))[0].textContent
+    $price = (($webResponse.ParsedHtml.getElementsByTagName("table") | `
+                Where-Object { $_.id -eq "goods_buttons" }).getElementsByTagName("span"))[0].textContent
+                
     $name = ((($webResponse.ParsedHtml.getElementsByTagName("div") | `
                     Where-Object { $_.id -eq "goods_center" }).getElementsByTagName("span") | `
                 Where-Object { $_.id -eq "goods_name" }).getElementsByTagName("span"))[0].textContent
