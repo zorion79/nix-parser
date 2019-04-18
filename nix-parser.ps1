@@ -13,9 +13,12 @@ foreach ($url in $urls) {
                     Where-Object { $_.id -eq "goods_center" }).getElementsByTagName("span") | `
                 Where-Object { $_.id -eq "goods_name" }).getElementsByTagName("span"))[0].textContent
     
+    # $trimPrice = $price.Replace(" руб.", "")
+    # $trimPrice
+
     $o = [PSCustomObject]@{
         url   = $url.P1
-        price = $price
+        price = $price -replace '\s', '' -replace 'руб.', ''
         name  = $name
     }
     $result += $o
